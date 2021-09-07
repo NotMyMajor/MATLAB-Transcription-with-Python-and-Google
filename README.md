@@ -30,4 +30,6 @@ Before you use this program, there are a number of steps required to get everyth
 
 Once all of that is complete, you should be ready to fire up MATLAB and run GoogleSpeech2TextPipeline.m. If you've set up everything correctly, it should work!
 
+## See the html page in the html.zip folder for a gif example of loading and interacting with Audio Labeler.
+
 I'm far from a professional programmer, so forgive me if this program has its bugs or issues.
