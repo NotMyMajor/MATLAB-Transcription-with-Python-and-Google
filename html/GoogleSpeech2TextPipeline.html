@@ -1,0 +1,541 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>MATLAB Audio Labeler Google Cloud Speech-to-Text LongRunningRecognize with Python</title><meta name="generator" content="MATLAB 9.9"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2021-09-07"><meta name="DC.source" content="GoogleSpeech2TextPipeline.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>MATLAB Audio Labeler Google Cloud Speech-to-Text LongRunningRecognize with Python</h1><!--introduction--><p>Uses a Python script to transcribe a .wav file and turn the transcription into a labeled signal set for use in AudioLabeler.</p><p>Originally intended to trancribe files for grading of speech accuracy. Includes labels for speakers and accuracy (can be ignored if not wanted). This program may require an understanding of Python. It certainly wouldn't hurt.</p><p>Python code is in the file MATLAB_Speech_Recog.py inside the /PythonFiles directory.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Before You Begin</a></li><li><a href="#3">Setup and File Selection</a></li><li><a href="#9">Mono and MP3 Audio Check</a></li><li><a href="#10">MP3 to WAV Conversion</a></li><li><a href="#11">Upload, Transcribe, and Delete from Cloud</a></li><li><a href="#15">Translate Results</a></li><li><a href="#22">Create Labeled Signal Set</a></li><li><a href="#27">Saving Variables</a></li><li><a href="#29">Opening AudioLabeler</a></li><li><a href="#31">Example Interaction with Audio Labeler</a></li><li><a href="#32">License</a></li></ul></div><h2 id="1">Before You Begin</h2><p>The following is a list of steps necessary to complete before running this code for the first time.</p><div><ol><li>Install Python. <a href="https://www.python.org/downloads/">Python Download Page</a></li><li>Run the MATLAB_Speech_Recog_SETUP.py file. It should be under /PythonFiles. Double check that you have sucessfully installed the google-cloud-speech and google-cloud-storage libraries.</li><li>Set up your Google Cloud Speech-to-Text API <a href="https://cloud.google.com/speech-to-text/docs/quickstart-client-libraries">Google Cloud Speech-to-Text API Instructions</a></li><li>Download your Google Cloud authorization JSON file and store it someplace safe. We recommend the /data folder in /PythonFiles <a href="https://cloud.google.com/speech-to-text/docs/libraries">Google Cloud Speech-to-Text JSON Instructions</a></li><li>Create a Google Cloud Storage bucket to store your audio files <a href="https://cloud.google.com/storage/docs/creating-buckets">Google Cloud Storage Bucket Instructions</a></li><li>Create a folder in your Google Cloud Storage bucket named TranscriptionOutput.</li><li>Change the paths for your download of the Python script folder. (Lines 49 and 50 in the following code.)</li><li>Change the path to your Google Cloud authorization JSON file. (Line 60 in the following code.)</li><li>Change the name of the bucket to the name of your Google Cloud Storage bucket. (Line 56 in the following code.) Make sure to use just the name of the bucket. NOT gs://your_bucket_name. Just your_bucket_name.</li></ol></div><h2 id="3">Setup and File Selection</h2><p>Does initial setup and brings up the file explorer for choosing your .wav file.</p><p>If you run into an error with the following code, MATLAB may be using the wrong version of Python. Enable the following line and add the path to python.exe for the correct version of Python.</p><pre class="codeinput"><span class="comment">% pyenv('Version', 'C:\Users\Path-To-Your-Python-Install\python.exe');</span>
+</pre><p>Add the correct directory to Python PATH if not already present.</p><pre class="codeinput">P = py.sys.path;
+<span class="keyword">if</span> count(P,<span class="string">'C:\Users\Path-To-This-Script-Directory\PythonFiles'</span>) == 0
+    insert(P,int32(0),<span class="string">'C:\Users\Path-To-This-Script-Directory\PythonFiles'</span>);
+    disp(<span class="string">"Added to Python PATH"</span>);
+<span class="keyword">end</span>
+</pre><p>Set the google bucket name to send files to.</p><pre class="codeinput">gs_bucket = <span class="string">"your-bucket-name-here"</span>;
+</pre><p>Set the path to your google authorization JSON file.</p><pre class="codeinput">google_auth_JSON_path = <span class="string">"C:/Users/Path-To-Your-JSON-File/Your-JSON-File.json"</span>;
+</pre><p>Pull up file explorer and get the file name and path for the audio file to transcribe.</p><pre class="codeinput">[destination_blob_name, source_file_path] = uigetfile({<span class="string">'*.wav;*.mp3'</span>,<span class="keyword">...</span>
+    <span class="string">'Audio Files (*.wav, *.mp3)'</span>;
+    <span class="string">'*.*'</span>, <span class="string">'All Files (*.*)'</span>}, <span class="keyword">...</span>
+    <span class="string">'Select Audio File'</span>);
+source_file_full_path = append(source_file_path, destination_blob_name);
+</pre><h2 id="9">Mono and MP3 Audio Check</h2><p>Check if audio is mono. If not, remix to mono, save the output and use that for the rest of the script. Also check if audio is .mp3 and, if so, resave as .wav and use that for the rest of the script.</p><pre class="codeinput">f_char = filesep;
+[audio_read,fs] = audioread(source_file_full_path);
+[fPath, fName, fExt] = fileparts(source_file_full_path);
+file_info = audioinfo(source_file_full_path);
+<span class="keyword">switch</span> lower(fExt)
+
+    <span class="keyword">case</span> <span class="string">'.wav'</span>
+        <span class="keyword">if</span> size(audio_read,2) &gt;= 2
+            disp(<span class="string">"Audio has more than one channel. Remixing to mono..."</span>);
+            audio_read_mono = audio_read(:,1);
+            new_mono_file = append(source_file_path, <span class="string">'MONO_'</span>,destination_blob_name);
+            audiowrite(new_mono_file,audio_read_mono,fs);
+            source_file_full_path = append(source_file_path, <span class="string">'MONO_'</span>,destination_blob_name);
+        <span class="keyword">end</span>
+
+    <span class="keyword">case</span> <span class="string">'.mp3'</span>
+        new_mp3_file = append(source_file_path, <span class="string">'WAV_'</span>,destination_blob_name);
+        new_mp3_file = replace(new_mp3_file, <span class="string">'.mp3'</span>, <span class="string">'.wav'</span>);
+        audiowrite(new_mp3_file, audio_read, fs);
+        source_file_full_path = new_mp3_file;
+        [source_file_path, destination_blob_name] = fileparts(source_file_full_path);
+        [audio_read,fs] = audioread(source_file_full_path);
+
+        <span class="keyword">if</span> size(audio_read,2) &gt;= 2
+            disp(<span class="string">"Audio has more than one channel. Remixing to mono..."</span>);
+            audio_read_mono = audio_read(:,1);
+            new_mono_file = append(source_file_path, f_char, <span class="string">'MONO_'</span>,destination_blob_name, <span class="string">'.wav'</span>);
+            audiowrite(new_mono_file,audio_read_mono,fs);
+            source_file_full_path = append(source_file_path, f_char, <span class="string">'MONO_'</span>,destination_blob_name, <span class="string">'.wav'</span>);
+        <span class="keyword">end</span>
+
+    <span class="keyword">otherwise</span>
+        error(<span class="string">'Unexpected file extension: %s. Please use .wav or .mp3.'</span>, fExt);
+
+<span class="keyword">end</span> <span class="comment">% For switch</span>
+</pre><pre class="codeoutput">Audio has more than one channel. Remixing to mono...
+</pre><h2 id="10">MP3 to WAV Conversion</h2><p>Check if the audio file is .mp3 and convert to .wav if so.</p><pre class="codeinput">[audio_read,fs] = audioread(source_file_full_path);
+</pre><h2 id="11">Upload, Transcribe, and Delete from Cloud</h2><p>Uploads the mono file to Google Cloud Storage, runs Google Cloud Speech-to-Text, and then deletes the mono file from Google Cloud Storage. _______________________________________________________________________________________________________________________________________</p><p>Upload the chosen file to the Google Cloud Storage bucket specified. Then create the path to the bucket file based on the specified bucket and filename.</p><p>Even if the file already exists in the bucket, it doesn't hurt to use this given that the new file will simply overwrite the previous version.</p><pre class="codeinput">disp(<span class="string">"Uploading file to Google Cloud Storage bucket..."</span>);
+py.MATLAB_Speech_Recog.upload_blob(gs_bucket, source_file_full_path, destination_blob_name, google_auth_JSON_path);
+path_to_bucket_file = append(<span class="string">"gs://"</span>,gs_bucket,<span class="string">"/"</span>,destination_blob_name);
+</pre><pre class="codeoutput">Uploading file to Google Cloud Storage bucket...
+File C:\Users\Research\Dropbox\Studies\SpeechScoringApp\ExampleSoundFiles\RhysTest\MONO_TranscriptionTestOdyssey.wav uploaded as TranscriptionTestOdyssey.wav
+Path to new bucket file: gs://your-bucket-name-here/TranscriptionTestOdyssey.wav
+</pre><p>This method performs transcription with speaker diarization enabled. The second to last passed term is the number of speakers to look for.</p><p>ALWAYS MAKE SURE THIS IS A WHOLE INTEGER.</p><p>Additionally, the last term can be set to either true or false to indicate whether you want to save a copy of the transcription to your Google Cloud bucket.</p><pre class="codeinput">disp(<span class="string">"Running transcription on file..."</span>);
+result = py.MATLAB_Speech_Recog.transcribe_gcs_multi(path_to_bucket_file, google_auth_JSON_path, <span class="string">"2"</span>, false);
+</pre><pre class="codeoutput">Running transcription on file...
+gs://your-bucket-name-here/TranscriptionTestOdyssey_TRANSCRIPT.txt
+Waiting for operation to complete...
+Transcript: This is a test of the Matlab Google transcription program to test the program. I will be reading a section from The Odyssey.
+Confidence: 0.804241955280304
+Transcript:  So up now, from The Haven, Odysseus climb to rugged path, through Timber along, High Ground. Athena had shown the way to reach the swineherds. Place that find loyal, man, who have all the household hands Odysseus ever had cared the most for his master's worldly Goods.
+Confidence: 0.7906772494316101
+Transcript:  Sitting at the door of his lodge. He found him there in his Farmstead. I wold Broad and large with its Long View on its cleared rise of ground. The swineherd made those walls with his own hands to enclose the pigs of his master gone for years alone, apart from his queen, or old Laertes. He'd built them up of Corey blocks of stone and cook them. Well with a fence of wild pear.
+Confidence: 0.8682701587677002
+Transcript:  Outside. He'd driven Stakes into a long line, Stockade a ring of thick-set palings split from an oak stock. Dark heart. With, in the yard. He built twelve styes side-by-side to bet his pigs. In an each 150 brood cells slipped around and, and kept for breeding the board slept outside, but far fewer of them. Thanks to the lordly. Suitors, feasts that kept on thinning the hood and kept the swineherd stepping sending to town each day. The best fat hog in sight.
+Confidence: 0.7932784557342529
+Transcript:  By now they were down to 360 head but guarding them all the time. Were dogs like Savage beasts. A pack of four reared by the swineherd for man of men.
+Confidence: 0.9088045358657837
+Transcript:  The man himself was fitting sandals to his feet, carving away at an oxide dark and supple, as for his men three were off with their pigs hurting them here or there under orders. He'd sent a force to town with Hagen toe for the gorging. Suitors to slaughter off and let themselves with pork.
+Confidence: 0.856031596660614
+Transcript:  This is the end of the test.
+Confidence: 0.9128385186195374
+Transcript: 
+Confidence: 0.0
+</pre><p>Disabling the following will keep the uploaded file in the Google Cloud bucket.</p><pre class="codeinput">disp(<span class="string">"Deleting file from Google Cloud bucket..."</span>);
+py.MATLAB_Speech_Recog.delete_blob(gs_bucket, destination_blob_name, google_auth_JSON_path);
+</pre><pre class="codeoutput">Deleting file from Google Cloud bucket...
+File TranscriptionTestOdyssey.wav deleted from bucket your-bucket-name-here.
+</pre><h2 id="15">Translate Results</h2><p>Translates the list of lists that Python returns into MATLAB cell arrays for easier use.</p><p>Grabs the correct index from the results and translates it into a cell array of python lists.</p><pre class="codeinput">transcript = result{3};
+list_transcript = cell(transcript);
+list_transcript = list_transcript';
+sz = size(list_transcript);
+</pre><p>Creates a nX1 size cell array containing the start times.</p><pre class="codeinput">start_time = cell(sz);
+<span class="keyword">for</span> s = 1:length(list_transcript)
+    start_time{s} = string(list_transcript{s}{1});
+    start_time{s} = str2double(start_time{s}{1}(11:length(start_time{s}{1})));
+<span class="keyword">end</span>
+</pre><p>Creates a nX1 size cell array containing the end times.</p><pre class="codeinput">end_time = cell(sz);
+<span class="keyword">for</span> e = 1:length(list_transcript)
+    end_time{e} = string(list_transcript{e}{2});
+    end_time{e} = str2double(end_time{e}{1}(9:length(end_time{e}{1})));
+<span class="keyword">end</span>
+</pre><p>Creates a nX2 size cell array containing both start and end times.</p><pre class="codeinput">ROILimits = horzcat(start_time, end_time);
+</pre><p>Creates a nX1 cell array containing the transcribed words.</p><pre class="codeinput">Value = cell(sz);
+<span class="keyword">for</span> w = 1:length(list_transcript)
+    Value{w} = string(list_transcript{w}{3});
+    Value{w} = Value{w}{1}(6:length(Value{w}{1}));
+<span class="keyword">end</span>
+</pre><p>Creates a nx1 cell array containing the speaker numbers.</p><pre class="codeinput">speaker = cell(sz);
+<span class="keyword">for</span> sp = 1:length(list_transcript)
+    speaker{sp} = string(list_transcript{sp}{4});
+    speaker{sp} = speaker{sp}{1}(9:length(speaker{sp}{1}));
+<span class="keyword">end</span>
+</pre><h2 id="22">Create Labeled Signal Set</h2><p>Creates the Labeled Signal Set for use in AudioLabeler. Once this set is created, it can be loaded from the workspace or from the saved file. Loading the set in AudioLabeler automatically loads the labels, timeframes, and audio file.</p><p>Creates a table containing the full results from transcription. You can save this out as a csv or something.</p><pre class="codeinput">full_table_results = table(start_time, end_time, Value, speaker);
+</pre><p>Convert ROILimits to a matlab matrix instead of cell array. Necessary for use with labeled signal set.</p><pre class="codeinput">ROILimits=cell2mat(ROILimits);
+</pre><p>Makes an audioDataStore object with the path to the chosen audio file.</p><pre class="codeinput">ADS = audioDatastore(source_file_full_path);
+</pre><p>Make the labeled signal set with the start and stop times, transcribed words, speaker numbers, and a blank 'correct' label for grading.</p><pre class="codeinput">lss = labeledSignalSet(ADS);
+lbldefs = signalLabelDefinition(<span class="string">"SpeechContent"</span>, <span class="string">'LabelType'</span>, <span class="string">'roi'</span>, <span class="string">'LabelDataType'</span>, <span class="string">'string'</span>);
+lbldefs_another = signalLabelDefinition(<span class="string">"Speakers"</span>, <span class="string">'LabelType'</span>, <span class="string">'roi'</span>, <span class="string">'LabelDataType'</span>, <span class="string">'string'</span>);
+lbldefs_last = signalLabelDefinition(<span class="string">"Correct"</span>, <span class="string">'LabelType'</span>, <span class="string">'roi'</span>, <span class="string">'LabelDataType'</span>, <span class="string">'logical'</span>, <span class="string">'DefaultValue'</span>, false);
+addLabelDefinitions(lss, lbldefs);
+addLabelDefinitions(lss, lbldefs_another);
+addLabelDefinitions(lss, lbldefs_last);
+resetLabelValues(lss);
+setLabelValue(lss, 1, <span class="string">"SpeechContent"</span>, ROILimits, Value);
+setLabelValue(lss, 1, <span class="string">"Speakers"</span>, ROILimits, speaker);
+setLabelValue(lss, 1, <span class="string">"Correct"</span>, ROILimits);
+
+disp(<span class="string">"Full results written to table: full_table_results"</span>);
+disp(<span class="string">"Label set created. Named 'lss'."</span>);
+</pre><pre class="codeoutput">Full results written to table: full_table_results
+Label set created. Named 'lss'.
+</pre><h2 id="27">Saving Variables</h2><p>Saves the full results table and the labeled signal set to a .mat file for future use.</p><pre class="codeinput">currentFile = mfilename( <span class="string">'fullpath'</span> );
+[pathstr,~,~] = fileparts( currentFile );
+save_filename = append(pathstr, <span class="string">"\Output\"</span>, destination_blob_name(1:(length(destination_blob_name)-4)), <span class="string">"-OUTPUT_ALL.mat"</span>);
+save(save_filename, <span class="string">"full_table_results"</span>, <span class="string">"lss"</span>);
+disp(newline);
+fprintf(<span class="string">"Full results table and labeled signal set saved to %s"</span>, save_filename);
+disp(newline);
+</pre><pre class="codeoutput">
+
+Full results table and labeled signal set saved to C:\Users\Path-To-This-Script-Directory\Output\TranscriptionTestOdyssey-OUTPUT_ALL.mat
+
+</pre><p>Does the same as above, but saves the variables to separate files.</p><pre class="codeinput"><span class="comment">% currentFile = mfilename( 'fullpath' );</span>
+<span class="comment">% [pathstr,~,~] = fileparts( currentFile );</span>
+<span class="comment">% save_filename_table = append(pathstr, "\Output\", destination_blob_name(1:(length(destination_blob_name)-4)), "-OUTPUT_TABLE.mat");</span>
+<span class="comment">% save(save_filename_table, "full_table_results");</span>
+<span class="comment">% save_filename = append(pathstr, "\Output\", destination_blob_name(1:(length(destination_blob_name)-4)), "-OUTPUT_LABELS.mat");</span>
+<span class="comment">% save(save_filename, "lss");</span>
+<span class="comment">% disp(newline);</span>
+<span class="comment">% sprintf("Full results table saved to %s", save_filename_table);</span>
+<span class="comment">% sprintf("Labeled signal set saved to %s", save_filename);</span>
+<span class="comment">% disp(newline);</span>
+</pre><h2 id="29">Opening AudioLabeler</h2><pre class="codeinput">audioLabeler;
+fprintf(<span class="string">"In audioLabeler, import label set 'lss' from workspace or from %s"</span>, save_filename);
+disp(newline);
+</pre><pre class="codeoutput">In audioLabeler, import label set 'lss' from workspace or from C:\Users\Path-To-This-Script-Directory\Output\TranscriptionTestOdyssey-OUTPUT_ALL.mat
+
+</pre><img vspace="5" hspace="5" src="GoogleSpeech2TextPipeline_01.png" alt=""> <p>Once AudioLabeler is open, you can click Import and then choose to import the labeled signal set either from the workspace (where it is named 'lss') or from the file saved previously.</p><p>If you chose to save both the full results table and the labeled signal set to the same .mat file, you can still import from file. AudioLabeler will simply grab the labeled signal set and ignore the table.</p><h2 id="31">Example Interaction with Audio Labeler</h2><p><img vspace="5" hspace="5" src="OdysseyTestFixed0001-9309.gif" alt=""> </p><h2 id="32">License</h2><pre class="codeinput"><span class="comment">% MATLAB Google Speech 2 Text Pipeline and accompanying Python scripts</span>
+<span class="comment">% for use in transcribing audio for MATLAB Audio Labeler.</span>
+<span class="comment">% Copyright (C) 2021 Rhys Switzer</span>
+<span class="comment">%</span>
+<span class="comment">% This program is free software: you can redistribute it and/or modify</span>
+<span class="comment">% it under the terms of the GNU General Public License as published by</span>
+<span class="comment">% the Free Software Foundation, either version 3 of the License, or</span>
+<span class="comment">% (at your option) any later version.</span>
+<span class="comment">%</span>
+<span class="comment">% This program is distributed in the hope that it will be useful,</span>
+<span class="comment">% but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="comment">% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="comment">% GNU General Public License for more details.</span>
+<span class="comment">%</span>
+<span class="comment">% You should have received a copy of the GNU General Public License</span>
+<span class="comment">% along with this program.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2020b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% MATLAB Audio Labeler Google Cloud Speech-to-Text LongRunningRecognize with Python
+% Uses a Python script to transcribe a .wav file and turn the transcription
+% into a labeled signal set for use in AudioLabeler. 
+% 
+% Originally intended to trancribe files for grading of speech accuracy.
+% Includes labels for speakers and accuracy (can be ignored if not wanted).
+% This program may require an understanding of Python. It certainly wouldn't hurt.
+%
+% Python code is in the file MATLAB_Speech_Recog.py inside the /PythonFiles
+% directory.
+
+%% Before You Begin
+% The following is a list of steps necessary to complete before running
+% this code for the first time.
+
+%%
+% 
+% # Install Python. <https://www.python.org/downloads/ Python Download Page>
+% # Run the MATLAB_Speech_Recog_SETUP.py file. It should be under
+% /PythonFiles. Double check that you have sucessfully installed the google-cloud-speech and google-cloud-storage libraries.
+% # Set up your Google Cloud Speech-to-Text API <https://cloud.google.com/speech-to-text/docs/quickstart-client-libraries Google Cloud Speech-to-Text API Instructions>
+% # Download your Google Cloud authorization JSON file and store it
+% someplace safe. We recommend the /data folder in /PythonFiles <https://cloud.google.com/speech-to-text/docs/libraries Google Cloud Speech-to-Text JSON Instructions>
+% # Create a Google Cloud Storage bucket to store your audio files <https://cloud.google.com/storage/docs/creating-buckets Google Cloud Storage Bucket Instructions>
+% # Create a folder in your Google Cloud Storage bucket named
+% TranscriptionOutput.
+% # Change the paths for your download of the Python script folder. (Lines
+% 49 and 50 in the following code.)
+% # Change the path to your Google Cloud authorization JSON file. (Line 60
+% in the following code.)
+% # Change the name of the bucket to the name of your Google Cloud Storage
+% bucket. (Line 56 in the following code.) Make sure to use just the name of
+% the bucket. NOT gs://your_bucket_name. Just your_bucket_name.
+
+%% Setup and File Selection
+% Does initial setup and brings up the file explorer for choosing your .wav
+% file.
+
+%%
+% If you run into an error with the following code, MATLAB may be using the
+% wrong version of Python. Enable the following line and add the path to
+% python.exe for the correct version of Python.
+
+% pyenv('Version', 'C:\Users\Path-To-Your-Python-Install\python.exe');
+
+%%
+% Add the correct directory to Python PATH if not already present.
+P = py.sys.path;
+if count(P,'C:\Users\Path-To-This-Script-Directory\PythonFiles') == 0
+    insert(P,int32(0),'C:\Users\Path-To-This-Script-Directory\PythonFiles');
+    disp("Added to Python PATH");
+end
+
+%%
+% Set the google bucket name to send files to.
+gs_bucket = "your-bucket-name-here";
+
+%%
+% Set the path to your google authorization JSON file.
+google_auth_JSON_path = "C:/Users/Path-To-Your-JSON-File/Your-JSON-File.json";
+
+%%
+% Pull up file explorer and get the file name and path for the audio file to
+% transcribe.
+[destination_blob_name, source_file_path] = uigetfile({'*.wav;*.mp3',...
+    'Audio Files (*.wav, *.mp3)';
+    '*.*', 'All Files (*.*)'}, ...
+    'Select Audio File');
+source_file_full_path = append(source_file_path, destination_blob_name);
+
+%% Mono and MP3 Audio Check
+% Check if audio is mono. If not, remix to mono, save the output and use
+% that for the rest of the script. Also check if audio is .mp3 and, if so,
+% resave as .wav and use that for the rest of the script.
+f_char = filesep;
+[audio_read,fs] = audioread(source_file_full_path);
+[fPath, fName, fExt] = fileparts(source_file_full_path);
+file_info = audioinfo(source_file_full_path);
+switch lower(fExt)
+    
+    case '.wav'
+        if size(audio_read,2) >= 2
+            disp("Audio has more than one channel. Remixing to mono...");
+            audio_read_mono = audio_read(:,1);
+            new_mono_file = append(source_file_path, 'MONO_',destination_blob_name);
+            audiowrite(new_mono_file,audio_read_mono,fs);
+            source_file_full_path = append(source_file_path, 'MONO_',destination_blob_name);
+        end
+        
+    case '.mp3'
+        new_mp3_file = append(source_file_path, 'WAV_',destination_blob_name);
+        new_mp3_file = replace(new_mp3_file, '.mp3', '.wav');
+        audiowrite(new_mp3_file, audio_read, fs);
+        source_file_full_path = new_mp3_file;
+        [source_file_path, destination_blob_name] = fileparts(source_file_full_path);
+        [audio_read,fs] = audioread(source_file_full_path);
+        
+        if size(audio_read,2) >= 2
+            disp("Audio has more than one channel. Remixing to mono...");
+            audio_read_mono = audio_read(:,1);
+            new_mono_file = append(source_file_path, f_char, 'MONO_',destination_blob_name, '.wav');
+            audiowrite(new_mono_file,audio_read_mono,fs);
+            source_file_full_path = append(source_file_path, f_char, 'MONO_',destination_blob_name, '.wav');
+        end
+        
+    otherwise
+        error('Unexpected file extension: %s. Please use .wav or .mp3.', fExt);
+        
+end % For switch
+
+%% MP3 to WAV Conversion
+% Check if the audio file is .mp3 and convert to .wav if so.
+
+[audio_read,fs] = audioread(source_file_full_path);
+
+%% Upload, Transcribe, and Delete from Cloud
+% Uploads the mono file to Google Cloud Storage, runs Google Cloud
+% Speech-to-Text, and then deletes the mono file from Google Cloud Storage.
+% _________________________________________________________________________________________________________________________________________ 
+
+%%
+% Upload the chosen file to the Google Cloud Storage bucket specified. Then
+% create the path to the bucket file based on the specified bucket and
+% filename. 
+% 
+% Even if the file already exists in the bucket, it doesn't hurt
+% to use this given that the new file will simply overwrite the previous
+% version.
+disp("Uploading file to Google Cloud Storage bucket...");
+py.MATLAB_Speech_Recog.upload_blob(gs_bucket, source_file_full_path, destination_blob_name, google_auth_JSON_path);
+path_to_bucket_file = append("gs://",gs_bucket,"/",destination_blob_name);
+
+%%
+% This method performs transcription with speaker diarization enabled. The
+% second to last passed term is the number of speakers to look for. 
+% 
+% ALWAYS MAKE SURE THIS IS A WHOLE INTEGER.
+% 
+% Additionally, the last term can be set to either true or false to
+% indicate whether you want to save a copy of the transcription to your
+% Google Cloud bucket.
+disp("Running transcription on file...");
+result = py.MATLAB_Speech_Recog.transcribe_gcs_multi(path_to_bucket_file, google_auth_JSON_path, "2", false);
+
+%%
+% Disabling the following will keep the uploaded file in the Google Cloud
+% bucket.
+disp("Deleting file from Google Cloud bucket...");
+py.MATLAB_Speech_Recog.delete_blob(gs_bucket, destination_blob_name, google_auth_JSON_path);
+
+%% Translate Results
+% Translates the list of lists that Python returns into MATLAB cell arrays
+% for easier use.
+
+%%
+% Grabs the correct index from the results and translates it into a cell
+% array of python lists.
+transcript = result{3};
+list_transcript = cell(transcript);
+list_transcript = list_transcript';
+sz = size(list_transcript);
+
+%%
+% Creates a nX1 size cell array containing the start times.
+start_time = cell(sz);
+for s = 1:length(list_transcript)
+    start_time{s} = string(list_transcript{s}{1});
+    start_time{s} = str2double(start_time{s}{1}(11:length(start_time{s}{1})));
+end
+
+%%
+% Creates a nX1 size cell array containing the end times.
+end_time = cell(sz);
+for e = 1:length(list_transcript)
+    end_time{e} = string(list_transcript{e}{2});
+    end_time{e} = str2double(end_time{e}{1}(9:length(end_time{e}{1})));
+end
+
+%%
+% Creates a nX2 size cell array containing both start and end times.
+ROILimits = horzcat(start_time, end_time);
+
+%%
+% Creates a nX1 cell array containing the transcribed words.
+Value = cell(sz);
+for w = 1:length(list_transcript)
+    Value{w} = string(list_transcript{w}{3});
+    Value{w} = Value{w}{1}(6:length(Value{w}{1}));
+end
+
+%%
+% Creates a nx1 cell array containing the speaker numbers.
+speaker = cell(sz);
+for sp = 1:length(list_transcript)
+    speaker{sp} = string(list_transcript{sp}{4});
+    speaker{sp} = speaker{sp}{1}(9:length(speaker{sp}{1}));
+end
+
+%% Create Labeled Signal Set
+% Creates the Labeled Signal Set for use in AudioLabeler. Once this set is
+% created, it can be loaded from the workspace or from the saved file.
+% Loading the set in AudioLabeler automatically loads the labels, timeframes, and audio
+% file.
+
+%%
+% Creates a table containing the full results from transcription. You can
+% save this out as a csv or something.
+full_table_results = table(start_time, end_time, Value, speaker);
+
+%%
+% Convert ROILimits to a matlab matrix instead of cell array. Necessary for
+% use with labeled signal set.
+ROILimits=cell2mat(ROILimits);
+
+%%
+% Makes an audioDataStore object with the path to the chosen audio file.
+ADS = audioDatastore(source_file_full_path);
+
+%%
+% Make the labeled signal set with the start and stop times, transcribed
+% words, speaker numbers, and a blank 'correct' label for grading.
+lss = labeledSignalSet(ADS);
+lbldefs = signalLabelDefinition("SpeechContent", 'LabelType', 'roi', 'LabelDataType', 'string');
+lbldefs_another = signalLabelDefinition("Speakers", 'LabelType', 'roi', 'LabelDataType', 'string');
+lbldefs_last = signalLabelDefinition("Correct", 'LabelType', 'roi', 'LabelDataType', 'logical', 'DefaultValue', false);
+addLabelDefinitions(lss, lbldefs);
+addLabelDefinitions(lss, lbldefs_another);
+addLabelDefinitions(lss, lbldefs_last);
+resetLabelValues(lss);
+setLabelValue(lss, 1, "SpeechContent", ROILimits, Value);
+setLabelValue(lss, 1, "Speakers", ROILimits, speaker);
+setLabelValue(lss, 1, "Correct", ROILimits);
+
+disp("Full results written to table: full_table_results");
+disp("Label set created. Named 'lss'.");
+
+%% Saving Variables
+% Saves the full results table and the labeled signal set to a .mat file for
+% future use.
+currentFile = mfilename( 'fullpath' );
+[pathstr,~,~] = fileparts( currentFile );
+save_filename = append(pathstr, "\Output\", destination_blob_name(1:(length(destination_blob_name)-4)), "-OUTPUT_ALL.mat");
+save(save_filename, "full_table_results", "lss");
+disp(newline);
+fprintf("Full results table and labeled signal set saved to %s", save_filename);
+disp(newline);
+
+%%
+% Does the same as above, but saves the variables to separate files.
+
+% currentFile = mfilename( 'fullpath' );
+% [pathstr,~,~] = fileparts( currentFile );
+% save_filename_table = append(pathstr, "\Output\", destination_blob_name(1:(length(destination_blob_name)-4)), "-OUTPUT_TABLE.mat");
+% save(save_filename_table, "full_table_results");
+% save_filename = append(pathstr, "\Output\", destination_blob_name(1:(length(destination_blob_name)-4)), "-OUTPUT_LABELS.mat");
+% save(save_filename, "lss");
+% disp(newline);
+% sprintf("Full results table saved to %s", save_filename_table);
+% sprintf("Labeled signal set saved to %s", save_filename);
+% disp(newline);
+
+%% Opening AudioLabeler
+
+audioLabeler;
+fprintf("In audioLabeler, import label set 'lss' from workspace or from %s", save_filename);
+disp(newline);
+
+%%
+% Once AudioLabeler is open, you can click Import and then choose to import
+% the labeled signal set either from the workspace (where it is named 'lss')
+% or from the file saved previously. 
+% 
+% If you chose to save both the full
+% results table and the labeled signal set to the same .mat file, you can
+% still import from file. AudioLabeler will simply grab the labeled signal
+% set and ignore the table.
+
+%% Example Interaction with Audio Labeler
+% 
+% <<OdysseyTestFixed0001-9309.gif>>
+%
+
+%% License
+
+% MATLAB Google Speech 2 Text Pipeline and accompanying Python scripts
+% for use in transcribing audio for MATLAB Audio Labeler.
+% Copyright (C) 2021 Rhys Switzer
+% 
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+% 
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+% 
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+##### SOURCE END #####
+--></body></html>
