@@ -12,3 +12,11 @@ Includes labels for speakers and accuracy (can be ignored if not wanted).
 3. The file and necessary inforation are then passed to the Python script that uploads the file to a Google Cloud Storage bucket, performs the transcription, and passes back the results.
 4. MATLAB then turns the results into a table of words with start and end times, and then further into a Labeled Signal Set (lss) linked to the audio file.
 5. MATLAB then saves both the table and the lss before opening Audio Labeler and prompting the user to load the Labeled Signal Set either from the saved file or from the workspace.
+
+## Setup
+Before you use this program, there are a number of steps required to get everything up and working.
+1. Install Python. <https://www.python.org/downloads/ Python Download Page>
+2. Run the MATLAB_Speech_Recog_SETUP.py file. It should be under /PythonFiles. The script should end with this message: "Looks like everything works as intended! You're ready to begin!". If so, you can skip the next step. If not, try the next step before going further.
+3. Double check that you have successfully installed the google-cloud-speech and google-cloud-storage libraries by opening a terminal, typing "python" and hitting enter to start the Python shell, and then typing "from google.cloud import speech" and pressing enter and then "from google.cloud import storage" and pressing enter. If this all works without error, you're good to proceed. If not, then you may have to manually install the google-cloud-speech and google-cloud-storage libraries.
+4. Set up your Google Cloud Speech-to-Text API <https://cloud.google.com/speech-to-text/docs/quickstart-client-libraries Google Cloud Speech-to-Text API Instructions>
+5. Download your Google Cloud authorization JSON file and store it someplace safe. We recommend the /data folder in /PythonFiles. <https://cloud.google.com/speech-to-text/docs/libraries Google Cloud Speech-to-Text JSON Instructions>
