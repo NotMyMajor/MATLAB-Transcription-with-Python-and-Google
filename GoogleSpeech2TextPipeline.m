@@ -72,6 +72,9 @@ end % For isequal
 source_file_full_path = append(source_file_path, destination_blob_name);
 
 %% Startup package check and Python PATH check.
+% This check runs to make sure that the correct Python packages are
+% installed and everything is on PATH nicely. If this check is being
+% tripped for some reason when it shouldn't be, feel free to disable it.
 ready_togo = py.MATLAB_Speech_Recog_SETUP.startup_check();
 if ready_togo ~= 1
     error("Initial setup indicated that one or more Python packages are missing. Please run MATLAB_Speech_Recog_SETUP.py and follow instructions to fix.");
