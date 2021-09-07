@@ -33,3 +33,6 @@ Once all of that is complete, you should be ready to fire up MATLAB and run Goog
 ## See the html page in the html.zip folder for a gif example of loading and interacting with Audio Labeler.
 
 I'm far from a professional programmer, so forgive me if this program has its bugs or issues.
+
+## If you use my code to do something fun or cool, share it with me! Also, credit is nice to have too.
+## Enjoy!
