@@ -15,15 +15,17 @@ Includes labels for speakers and accuracy (can be ignored if not wanted).
 
 ## Setup
 Before you use this program, there are a number of steps required to get everything up and working.
-1. Install [Python](https://www.python.org/downloads/).
-2. Run the MATLAB_Speech_Recog_SETUP.py file. It should be under /PythonFiles. The script should end with this message: "Looks like everything works as intended! You're ready to begin!". If so, you can skip the next step. If not, try the next step before going further.
-3. Double check that you have successfully installed the google-cloud-speech and google-cloud-storage libraries by opening a terminal, typing "python" and hitting enter to start the Python shell, and then typing "from google.cloud import speech" and pressing enter and then "from google.cloud import storage" and pressing enter. If this all works without error, you're good to proceed. If not, then you may have to manually install the google-cloud-speech and google-cloud-storage libraries.
-4. Set up your [Google Cloud Speech-to-Text API](https://cloud.google.com/speech-to-text/docs/quickstart-client-libraries).
-5. Download your [Google Cloud authorization JSON file](https://cloud.google.com/speech-to-text/docs/libraries) and store it someplace safe. We recommend the /data folder in /PythonFiles.
-6. Create a [Google Cloud Storage bucket](https://cloud.google.com/storage/docs/creating-buckets) to store your audio files.
-7. Create a folder in your Google Cloud Storage bucket named __TranscriptionOutput__.
-8. Change the paths for your download of the Python script folder. (Lines 49 and 50 in the GoogleSpeech2TextPipeline.m file.)
-9. Change the path to your Google Cloud authorization JSON file. (Line 60 in the GoogleSpeech2TextPipeline.m file.)
-10. Change the name of the bucket to the name of your Google Cloud Storage bucket. (Line 56 in the GoogleSpeech2TextPipeline.m file.) *Bucket names are unique identifiers, so make sure to use **just** the name of the bucket. **NOT** gs://your_bucket_name. **JUST** your_bucket_name.*
+1. Download and extract the repository.
+2. If you want more organized documentation of the MATLAB script, unzip the html folder and view the .html document.
+3. Install [Python](https://www.python.org/downloads/).
+4. Run the MATLAB_Speech_Recog_SETUP.py file. It should be under /PythonFiles. The script should end with this message: "Looks like everything works as intended! You're ready to begin!". If so, you can skip the next step. If not, try the next step before going further.
+5. Double check that you have successfully installed the google-cloud-speech and google-cloud-storage libraries by opening a terminal, typing "python" and hitting enter to start the Python shell, and then typing "from google.cloud import speech" and pressing enter and then "from google.cloud import storage" and pressing enter. If this all works without error, you're good to proceed. If not, then you may have to manually install the google-cloud-speech and google-cloud-storage libraries.
+6. Set up your [Google Cloud Speech-to-Text API](https://cloud.google.com/speech-to-text/docs/quickstart-client-libraries).
+7. Download your [Google Cloud authorization JSON file](https://cloud.google.com/speech-to-text/docs/libraries) and store it someplace safe. We recommend the /data folder in /PythonFiles.
+8. Create a [Google Cloud Storage bucket](https://cloud.google.com/storage/docs/creating-buckets) to store your audio files.
+9. Create a folder in your Google Cloud Storage bucket named __TranscriptionOutput__.
+10. Change the paths for your download of the Python script folder. (Lines 49 and 50 in the GoogleSpeech2TextPipeline.m file.)
+11. Change the path to your Google Cloud authorization JSON file. (Line 60 in the GoogleSpeech2TextPipeline.m file.)
+12. Change the name of the bucket to the name of your Google Cloud Storage bucket. (Line 56 in the GoogleSpeech2TextPipeline.m file.) *Bucket names are unique identifiers, so make sure to use **just** the name of the bucket. **NOT** gs://your_bucket_name. **JUST** your_bucket_name.*
 
 Once all of that is complete, you should be ready to fire up MATLAB and run GoogleSpeech2TextPipeline.m. If you've set up everything correctly, it should work!
