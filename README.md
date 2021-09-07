@@ -24,4 +24,4 @@ Before you use this program, there are a number of steps required to get everyth
 7. Create a folder in your Google Cloud Storage bucket named __TranscriptionOutput__.
 8. Change the paths for your download of the Python script folder. (Lines 49 and 50 in the GoogleSpeech2TextPipeline.m file.)
 9. Change the path to your Google Cloud authorization JSON file. (Line 60 in the GoogleSpeech2TextPipeline.m file.)
-10. Change the name of the bucket to the name of your Google Cloud Storage bucket. (Line 56 in the GoogleSpeech2TextPipeline.m file.) *Make sure to use **just** the name of the bucket. **NOT gs://your_bucket_name. Just your_bucket_name.***
+10. Change the name of the bucket to the name of your Google Cloud Storage bucket. (Line 56 in the GoogleSpeech2TextPipeline.m file.) *Make sure to use **just** the name of the bucket. **NOT** gs://your_bucket_name. **JUST** your_bucket_name.*
