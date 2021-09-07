@@ -15,8 +15,8 @@ Includes labels for speakers and accuracy (can be ignored if not wanted).
 
 ## Setup
 Before you use this program, there are a number of steps required to get everything up and working.
-1. Install Python. <https://www.python.org/downloads/ Python Download Page>
+1. Install [Python](https://www.python.org/downloads/).
 2. Run the MATLAB_Speech_Recog_SETUP.py file. It should be under /PythonFiles. The script should end with this message: "Looks like everything works as intended! You're ready to begin!". If so, you can skip the next step. If not, try the next step before going further.
 3. Double check that you have successfully installed the google-cloud-speech and google-cloud-storage libraries by opening a terminal, typing "python" and hitting enter to start the Python shell, and then typing "from google.cloud import speech" and pressing enter and then "from google.cloud import storage" and pressing enter. If this all works without error, you're good to proceed. If not, then you may have to manually install the google-cloud-speech and google-cloud-storage libraries.
-4. Set up your Google Cloud Speech-to-Text API <https://cloud.google.com/speech-to-text/docs/quickstart-client-libraries Google Cloud Speech-to-Text API Instructions>
-5. Download your Google Cloud authorization JSON file and store it someplace safe. We recommend the /data folder in /PythonFiles. <https://cloud.google.com/speech-to-text/docs/libraries Google Cloud Speech-to-Text JSON Instructions>
+4. Set up your [Google Cloud Speech-to-Text API](https://cloud.google.com/speech-to-text/docs/quickstart-client-libraries).
+5. Download your [Google Cloud authorization JSON file](https://cloud.google.com/speech-to-text/docs/libraries) and store it someplace safe. We recommend the /data folder in /PythonFiles.
