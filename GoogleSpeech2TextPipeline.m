@@ -41,23 +41,23 @@
 % wrong version of Python. Enable the following line and add the path to
 % python.exe for the correct version of Python.
 
-% pyenv('Version', 'C:\Users\Research\AppData\Local\Programs\Python\Python37\python.exe');
+% pyenv('Version', 'C:\Users\Path-To-Your-Python-Install\python.exe');
 
 %%
 % Add the correct directory to Python PATH if not already present.
 P = py.sys.path;
-if count(P,'C:\Users\Research\Dropbox\Studies\SpeechScoringApp\MATLABScripts\PythonFiles') == 0
-    insert(P,int32(0),'C:\Users\Research\Dropbox\Studies\SpeechScoringApp\MATLABScripts\PythonFiles');
+if count(P,'C:\Users\Path-To-This-Script-Directory\PythonFiles') == 0
+    insert(P,int32(0),'C:\Users\Path-To-This-Script-Directory\PythonFiles');
     disp("Added to Python PATH");
 end
 
 %%
 % Set the google bucket name to send files to.
-gs_bucket = "acnlab-audio-files";
+gs_bucket = "your-bucket-name-here";
 
 %%
 % Set the path to your google authorization JSON file.
-google_auth_JSON_path = "C:/Users/Research/Dropbox/Studies/SpeechScoringApp/MATLABScripts/PythonFiles/data/transcriptionprogram-a7df078889c7.json";
+google_auth_JSON_path = "C:/Users/Path-To-Your-JSON-File/Your-JSON-File.json";
 
 %%
 % Pull up file explorer and get the file name and path for the audio file to
