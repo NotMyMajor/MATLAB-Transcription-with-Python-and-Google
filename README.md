@@ -32,6 +32,8 @@ Once all of that is complete, you should be ready to fire up MATLAB and run Goog
 
 ## See the html page in the html.zip folder for a gif example of loading and interacting with Audio Labeler.
 
+## This program relies on the use of the Google Cloud Speech-to-Text API. Which is (sadly) not free. It also requires the Signal Processing and Communications toolbox for MATLAB. Ditto on the not free-ness.
+
 I'm far from a professional programmer, so forgive me if this program has its bugs or issues.
 
 ## If you use my code to do something fun or cool, share it with me! Also, credit is nice to have too.
