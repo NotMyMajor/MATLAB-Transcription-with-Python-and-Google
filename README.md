@@ -1,8 +1,7 @@
+# MATLAB-Audio-Labeler-Google-Cloud-Speech-to-Text-LongRunningRecognize-with-Python
 <p align="center">
   <img src="ExampleImages/ExampleOutput.png" />
 </p>
-
-# MATLAB-Audio-Labeler-Google-Cloud-Speech-to-Text-LongRunningRecognize-with-Python
 My attempt at fixing the MATLAB Audio Labeler app's Speech-to-Text function's issues with regards to using Google's cloud-based speech-to-text service. This program leverages Python to automatically upload and run long_running_recognize on compatible audio files. No more error messages from Audio Labeler's built-in Speech-to-Text function that your audio recording is too long.
 
 Originally intended to trancribe files for grading of speech accuracy.
@@ -57,6 +56,35 @@ python
 </p>
 
 Once all of that is complete, you should be ready to fire up MATLAB and run GoogleSpeech2TextPipeline.m. If you've set up everything correctly, it should work!
+
+## Running
+1. Load up the GoogleSpeech2TextPipeline.m file in MATLAB.
+2. Decide a few things:
+* Do you want to save the uploaded audio file to the bucket? (By default, the script uploads the audio only for transcription and removes it from the bucket as soon as transcription is done.)
+  - If so, disable the following lines (lines 160 & 161 in the original upload):
+  ```MATLAB
+  160. disp("Deleting file from Google Cloud bucket...");
+  161. py.MATLAB_Speech_Recog.delete_blob(gs_bucket, destination_blob_name, google_auth_JSON_path);
+  ```
+* How many speakers (i.e. people) do you want Google to attempt to differentiate between (Speaker diarization)?
+  - Set the number in quotes (the second to last input in the function) in the follwing line (line 155 in the original upload) to the WHOLE NUMBER INTEGER (duh) of people you want Google to look for.
+  ```MATLAB
+  155. result = py.MATLAB_Speech_Recog.transcribe_gcs_multi(path_to_bucket_file, google_auth_JSON_path, "2", false);
+  ```
+* Do you want to save the transcription results to a .txt file in the bucket?
+  - If so, set the last input in the function in the following line (line 155 in the original upload) from false to true.
+  ```MATLAB
+  155. result = py.MATLAB_Speech_Recog.transcribe_gcs_multi(path_to_bucket_file, google_auth_JSON_path, "2", false);
+  ```
+3. Run the script.
+4. Select your audio file (either .wav or .mp3).
+5. Wait for the script to upload your file, transcribe it, make the labeled signal set, and bring up Audio Labeler. For longer audio files this can take a while. Be patient.
+6. Once Audio Labeler has loaded, go to Import -> From Workspace and choose the variable "lss". Alternatively, you can choose From File and load the saved variable from the Output folder of this program.
+7. This should load both the audio file and the transcribed audio. For longer audio files this can take a while. Be patient.
+8. If you want to view just the transcribed words and their (estimated) beginning and end, see the variable labeled "full_table_results".
+9. Both the labeled signal set and the full table of results are named based on the original name of the audio file and saved to the Output folder of this program.
+
+If you want to practice playing around with a labeled signal set in Audio Labeler, you can launch Audio Labeler and load the ExampleOutput.mat file from the Output folder of this program. Yes that is my voice. No making fun of my test file.
 
 ## See the html page in the html.zip folder for a gif example of loading and interacting with Audio Labeler.
 
