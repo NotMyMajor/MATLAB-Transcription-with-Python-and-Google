@@ -19,8 +19,8 @@ Before you use this program, there are a number of steps required to get everyth
 2. If you want more organized documentation of the MATLAB script, unzip the html folder and view the .html document.
 3. Install [Python](https://www.python.org/downloads/).
 4. Run the MATLAB_Speech_Recog_SETUP.py file. It should be under /PythonFiles. The script should end with this message: "Looks like everything works as intended! You're ready to begin!". If so, you can skip the next step. If not, try the next step before going further.
-5. Double check that you have successfully installed the google-cloud-speech and google-cloud-storage libraries by opening a terminal, typing "python" and hitting enter to start the Python shell, and then typing "from google.cloud import speech" and pressing enter and then "from google.cloud import storage" and pressing enter. If this all works without error, you're good to proceed. If not, then you may have to [manually install](https://cloud.google.com/speech-to-text/docs/libraries) the google-cloud-speech and google-cloud-storage libraries.
-```bash
+5. Double check that you have successfully installed the google-cloud-speech and google-cloud-storage libraries by entering the commands below into your terminal. If this all works without error, you're good to proceed. If not, then you may have to [manually install](https://cloud.google.com/speech-to-text/docs/libraries) the google-cloud-speech and google-cloud-storage libraries.
+```python
 python
 >>> from google.cloud import speech
 >>> from google.cloud import storage
@@ -30,8 +30,22 @@ python
 8. Create a [Google Cloud Storage bucket](https://cloud.google.com/storage/docs/creating-buckets) to store your audio files.
 9. Create a folder in your Google Cloud Storage bucket named __TranscriptionOutput__.
 10. Change the paths for your download of the Python script folder. (Lines 49 and 50 in the GoogleSpeech2TextPipeline.m file. See image below for highlighted lines.)
+```MATLAB
+49. if count(P, 'C:\Users\Path-To-This-Script-Directory\PythonFiles') == 0
+50.     insert(P, int32(0), 'C:\Users\Path-To-This-Script-Directory\PythonFiles');
+```
 11. Change the path to your Google Cloud authorization JSON file. (Line 60 in the GoogleSpeech2TextPipeline.m file.  See image below for highlighted lines.)
+```MATLAB
+60. google_auth_JSON_path = "C:/Users/Path-To-Your-JSON-File/Your-JSON-File.json";
+```
 12. Change the name of the bucket to the name of your Google Cloud Storage bucket. (Line 56 in the GoogleSpeech2TextPipeline.m file.  See image below for highlighted lines.) *Bucket names are unique identifiers, so make sure to use **just** the name of the bucket. **NOT** gs://your_bucket_name. **JUST** your_bucket_name.*
+```MATLAB
+56. gs_bucket = "your-bucket-name-here";
+```
+13. (Optional) If you have more than one version of Python installed (as I did when developing this) MATLAB may use the wrong version and the script might break. You can change line 44 to the installation path to the correct version of Python and enable the line to fix this.
+```MATLAB
+44. % pyenv('Version', 'C:\Users\Path-To-Your-Python-Install\python.exe');
+```
 
 <p align="center">
   <img src="ExampleImages/LinesToChange.png" />
