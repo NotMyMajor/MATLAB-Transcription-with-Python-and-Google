@@ -30,6 +30,7 @@ Before you use this program, there are a number of steps required to get everyth
 
 <p align="center">
   <img src="ExampleImages/LinesToChange.png" />
+  Lines in GoogleSpeech2TextPipeline.m to change for your installation.
 </p>
 
 Once all of that is complete, you should be ready to fire up MATLAB and run GoogleSpeech2TextPipeline.m. If you've set up everything correctly, it should work!
