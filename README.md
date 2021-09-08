@@ -1,4 +1,4 @@
-# MATLAB-Audio-Labeler-Google-Cloud-Speech-to-Text-LongRunningRecognize-with-Python
+# MATLAB Audio Transcription Google Cloud Speech-to-Text LongRunningRecognize with Python
 <p align="center">
   <img src="ExampleImages/ExampleOutput.png" />
 </p>
