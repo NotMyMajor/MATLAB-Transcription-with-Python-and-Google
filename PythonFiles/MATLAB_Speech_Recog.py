@@ -230,4 +230,4 @@ def translate_output(words_str_list):
     return lofl_less
 
 #Use to test functions and changes. Be careful when enabling this. If you leave it enabled and try to run the MATLAB script, it will call this line before running MATLAB's commands. This can greatly increase the amount of time it takes to run and can muck up the output.
-#transcribe_gcs_multi('gs://acnlab-audio-files/RhysTest1_mono.wav', 'C:/Users/Research/Dropbox/StudentAndStaffFolders/Current/RhysSwitzer/Python Scripts/AudacityWordSplit/data/transcriptionprogram-a7df078889c7.json', '2', True)
+#transcribe_gcs_multi('path_here', 'path_here', '2', True)
