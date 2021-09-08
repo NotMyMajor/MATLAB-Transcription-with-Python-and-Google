@@ -28,7 +28,9 @@ Before you use this program, there are a number of steps required to get everyth
 11. Change the path to your Google Cloud authorization JSON file. (Line 60 in the GoogleSpeech2TextPipeline.m file.  See image below for highlighted lines.)
 12. Change the name of the bucket to the name of your Google Cloud Storage bucket. (Line 56 in the GoogleSpeech2TextPipeline.m file.  See image below for highlighted lines.) *Bucket names are unique identifiers, so make sure to use **just** the name of the bucket. **NOT** gs://your_bucket_name. **JUST** your_bucket_name.*
 
-
+<p align="center">
+  <img src="ExampleImages/LinesToChange.png" />
+</p>
 
 Once all of that is complete, you should be ready to fire up MATLAB and run GoogleSpeech2TextPipeline.m. If you've set up everything correctly, it should work!
 
