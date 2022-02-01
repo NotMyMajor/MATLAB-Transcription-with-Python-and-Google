@@ -9,6 +9,12 @@ Includes labels for speakers and accuracy (can be ignored if not wanted).
 
 ### This program may require an understanding of Python. It certainly wouldn't hurt.
 
+## Table of Contents
+* [How It Works](#how-it-works)
+* [Setup](#setup)
+* [Running](#running)
+* [Limitations](#limitations)
+
 ## How It Works
 1. MATLAB and its easy uigetfile function are used to allow the user to select their audio file.
 2. The file is remixed to a mono .wav file if it's not already.
@@ -87,6 +93,8 @@ Once all of that is complete, you should be ready to fire up MATLAB and run Goog
 If you want to practice playing around with a labeled signal set in Audio Labeler, you can launch Audio Labeler and load the ExampleOutput.mat file from the Output folder of this program. Yes that is my voice. No making fun of my test file.
 
 ## See the html page in the html.zip folder for a gif example of loading and interacting with Audio Labeler.
+
+## Limitations
 
 ## This program relies on the use of the Google Cloud Speech-to-Text API. Which is (sadly) not free. It also requires the Signal Processing and Communications toolbox for MATLAB. Ditto on the not free-ness.
 
