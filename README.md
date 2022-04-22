@@ -34,6 +34,10 @@ python
 >>> from google.cloud import speech
 >>> from google.cloud import storage
 ```
+Manual installation: 
+```python
+python -m pip install google-cloud-speech google-cloud-storage
+```
 6. Set up your [Google Cloud Speech-to-Text API](https://cloud.google.com/speech-to-text/docs/quickstart-client-libraries).
 7. Download your [Google Cloud authorization JSON file](https://cloud.google.com/speech-to-text/docs/libraries) and store it someplace safe. We recommend the /data folder in /PythonFiles.
 8. Create a [Google Cloud Storage bucket](https://cloud.google.com/storage/docs/creating-buckets) to store your audio files.
