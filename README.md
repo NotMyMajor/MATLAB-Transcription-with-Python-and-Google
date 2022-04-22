@@ -26,7 +26,7 @@ Includes labels for speakers and accuracy (can be ignored if not wanted).
 Before you use this program, there are a number of steps required to get everything up and working.
 1. Download and extract the repository.
 2. If you want more organized documentation of the MATLAB script, unzip the html folder and view the .html document.
-3. Install [Python](https://www.python.org/downloads/).
+3. Install [Python](https://www.python.org/downloads/release/python-379/). I used Python 3.7.9 for this script. Newer versions of Python seem to break things, so I recommend using this version as well.
 4. Run the MATLAB_Speech_Recog_SETUP.py file. It should be under /PythonFiles. The script should end with this message: "Looks like everything works as intended! You're ready to begin!". If so, you can skip the next step. If not, try the next step before going further.
 5. Double check that you have successfully installed the google-cloud-speech and google-cloud-storage libraries by entering the commands below into your terminal. If this all works without error, you're good to proceed. If not, then you may have to [manually install](https://cloud.google.com/speech-to-text/docs/libraries) the google-cloud-speech and google-cloud-storage libraries.
 ```python
